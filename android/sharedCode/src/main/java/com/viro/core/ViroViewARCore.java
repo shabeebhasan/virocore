@@ -761,7 +761,7 @@ public class ViroViewARCore extends ViroView {
         // to query the session. If Session is paused before GLSurfaceView, GLSurfaceView may
         // still call mSession.update() and get a SessionPausedException.
         mSurfaceView.onPause();
-        mNativeRenderer.onPause();
+        //mNativeRenderer.onPause();
     }
 
     /**
