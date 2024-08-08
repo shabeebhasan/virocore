@@ -10,9 +10,9 @@ jobs:
   androidBuild:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.3.0
+      - uses: actions/checkout@v4.1.7
       - name: set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: "adopt"
           java-version: 17
@@ -22,7 +22,7 @@ jobs:
           ./gradlew :viroreact:assembleDebug
         working-directory: ./android
       - name: Upload result ViroCore
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: viroCore
           path: |
@@ -38,18 +38,18 @@ jobs:
         working-directory: android
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4.1.7
         with:
           fetch-depth: 0
       - name: Install JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: "adopt"
           java-version: 17
       - name: Code checks
         run: ./gradlew :viroreact:check
       - name: Archive Lint report
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4.3.3
         if: ${{ always() }}
         with:
           name: Viro-Lint-report
@@ -65,10 +65,10 @@ jobs:
         xcode: ["14.2.0", "13.4.1"]
         macOS: ["macos-12"]
     steps:
-      - uses: actions/checkout@v3.3.0
+      - uses: actions/checkout@v4.1.7
       - name: Install gpg
         run: brew install gnupg
-      - uses: maxim-lobanov/setup-xcode@v1.5.1
+      - uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
           xcode-version: ${{ matrix.xcode }}
       - name: Install pod dependencies
@@ -87,7 +87,7 @@ jobs:
             IPHONEOS_DEPLOYMENT_TARGET=13.0 | xcpretty
 
       - name: Upload iOS Renderer artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: ios_dist.tgz
           path: ./ios/dist/
